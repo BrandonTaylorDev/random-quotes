@@ -2,7 +2,10 @@
   import type { Quote } from '~/types/Quote'
 
   useHead({
-    title: 'Your Quote Is... | An App by Brandon Taylor'
+    title: 'Your Quote Is... | An App by Brandon Taylor',
+    htmlAttrs: {
+      lang: 'en'
+    }
   })
 
   const quote = ref<Quote | null>(null)
@@ -45,12 +48,13 @@
     }, 1500)
   }
 
-  onMounted(async () => {
-    await fetchQuote()
-    setTimeout(() => {
-      showQuote.value = true
-      firstLoad.value = false
-    }, 1500)
+  onMounted(() => {
+    fetchQuote().then(() => {
+      setTimeout(() => {
+        showQuote.value = true
+        firstLoad.value = false
+      }, 1500)
+    })
   })
 </script>
 
@@ -77,7 +81,7 @@
       </div>
 
       <div :class="[ 'transition-opacity duration-1000 ease-linear', firstLoad ? 'opacity-0 pointer-events-none' : null ]">
-        <button type="button" :class="[ 'rounded-full p-2', swappingQuote ? 'animate-spin' : '' ]" @click="swapQuote">
+        <button type="button" :class="[ 'rounded-full p-2', swappingQuote ? 'animate-spin' : '' ]" @click="swapQuote" name="new-quote">
           <icon name="mdi:refresh" size="2em" mode="svg" />
         </button>
       </div>
