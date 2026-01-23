@@ -59,10 +59,23 @@
 </script>
 
 <template>
-  <div class="min-h-dvh h-dvh min-w-vw bg-slate-900 text-slate-300">
+  <div class="min-h-dvh min-w-vw bg-slate-900 text-slate-300 flex flex-col">
     <NuxtRouteAnnouncer />
     <NuxtLoadingIndicator />
-    <div class="w-full h-full flex flex-col gap-4 justify-center items-center">
+    
+    <!-- Portfolio Banner -->
+    <div class="w-full bg-slate-800 border-b border-slate-700 py-2 px-4 text-center">
+      <a 
+        href="https://www.brandontaylor.dev/projects" 
+        target="_blank" 
+        rel="noopener"
+        class="text-sm text-slate-400 hover:text-slate-200 transition-colors"
+      >
+        ← A project by Brandon Taylor.
+      </a>
+    </div>
+    
+    <div class="w-full flex-1 flex flex-col gap-4 justify-center items-center">
       <div :class="[ 'w-full max-w-prose flex flex-col gap-4 transition-opacity duration-1000 ease-linear text-center p-4', showQuote ? 'opacity-100' : 'opacity-0 pointer-events-none' ]">
         <div class="font-thin tracking-wider">
           <span class="text-3xl">
